@@ -47,6 +47,9 @@
 #include <assert.h>
 #include "okcalls.h"
 
+
+ // anshi modify
+
  #ifndef	_SYS_PTRACE_H_
 #define	_SYS_PTRACE_H_
 
@@ -79,6 +82,11 @@ enum {
 
 #define	PT_FIRSTMACH	32	/* for machine-specific requests */
 
+#define PTRACE_ME 0
+#define PTRACE_KILL 8
+#define PTRACE_SYSCALL 7
+
+
 __BEGIN_DECLS
 
 
@@ -88,6 +96,8 @@ int	ptrace(int _request, pid_t _pid, void * _addr, int _data);
 __END_DECLS
 
 #endif	/* !_SYS_PTRACE_H_ */
+
+// anshi modify end
 
 #define IGNORE_ESOL   //ignore the ending space char of lines while comparing
 #define STD_MB 1048576LL
@@ -1075,7 +1085,8 @@ int compile(int lang,char * work_dir) {
 		}
 		while(setgid(1536)!=0) sleep(1);
                 while(setuid(1536)!=0) sleep(1);
-                while(setresuid(1536, 1536, 1536)!=0) sleep(1);
+                // anshi modify
+                // while(setresuid(1536, 1536, 1536)!=0) sleep(1);
 
 		switch (lang) {
 		case 0:
@@ -1793,8 +1804,9 @@ void run_solution(int & lang, char * work_dir, int & time_lmt, int & usedtime,
 		sleep(1);
 	while (setuid(1536) != 0)
 		sleep(1);
-	while (setresuid(1536, 1536, 1536) != 0)
-		sleep(1);
+	// anshi modify
+	// while (setresuid(1536, 1536, 1536) != 0)
+	// 	sleep(1);
 
 //      char java_p1[BUFFER_SIZE], java_p2[BUFFER_SIZE];
 	// child
